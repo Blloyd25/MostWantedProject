@@ -20,13 +20,13 @@ function app(people){
       
     
     // }
-      break;
+      
 
-    
+  
     
       
-    app(people); // restart app
-      break;
+      app(people); // restart app
+        break;
   }
   
   // Call the mainMenu function ONLY after you find the SINGLE person you are looking for
@@ -42,6 +42,7 @@ function app(people){
   if(!person){
     alert("Could not find that individual.");
     return app(people); // restart
+  
   }
 
   let displayOption = promptFor("Found " + person.firstName + " " + person.lastName + " . Do you want to know their 'info', 'family', or 'descendants'? Type the option you want or 'restart' or 'quit'", autoValid);
@@ -166,18 +167,18 @@ function searchByHeight(people){
 //TODO: add other trait filter functions here.
 
 
-let tempPeople = people // 100
+//let tempPeople = people // 100
 
-tempPeople = searchByEyeColor(tempPeople)
-tempPeople = searchByGender(tempPeople)
+//tempPeople = searchByEyeColor(tempPeople)
+//tempPeople = searchByGender(tempPeople)
 
-if (tempPeople.length > 1) {
-  displayPeople(tempPeople)
-} else if (tempPeople.length === 1 ) {
-  displayPerson(tempPeople[0])
-} else { 
+//if (tempPeople.length > 1) {
+  //displayPeople(tempPeople)
+//} else if (tempPeople.length === 1 ) {
+ // displayPerson(tempPeople[0])
+//} else { 
   // nodata 
-}
+//}
 
 //#endregion
 
