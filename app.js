@@ -110,7 +110,7 @@ function searchByEyeColor(people){
 
 function searchByOccupation(people){
   let occupation = promptFor("What is the occupation?", autoValid);
-  let foundOccupation = occupation.filter(function(potentialMatch){
+  let foundPeople = people.filter(function(potentialMatch){
     if(potentialMatch.occupation === occupation){
       return true;
     }
@@ -118,12 +118,12 @@ function searchByOccupation(people){
       return false;
     }
   })
-  return foundOccupation
+  return foundPeople
 }
 
 function searchByGender(people){
   let gender = promptFor("What is the gender?", autoValid);
-  let foundGender = gender.filter(function(potentialMatch){
+  let foundPeople = people.filter(function(potentialMatch){
     if(potentialMatch.gender === gender){
       return true;
     }
@@ -131,12 +131,12 @@ function searchByGender(people){
     return false;
     }
   })
-  return foundGender
+  return foundPeople
 }
 function searchByWeight(people){
   let weight = promptFor("what weight do you want to search for?",autoValid);
 
-  let foundWeight = weight.filter(function(potentialMatch){
+  let foundPeople = people.filter(function(potentialMatch){
     if (potentialMatch.weight===weight){
       return true;
     }
@@ -144,14 +144,14 @@ function searchByWeight(people){
       return false;
     }
   })
-  return foundWeight
+  return foundPeople
 }
 
 
 function searchByHeight(people){
   let height = promptFor("what height are you looking for? in inches?", autoValid);
 
-  let foundHeight = height.filter(function(potentialMatch){
+  let foundPeople = people.filter(function(potentialMatch){
     if(potentialMatch.height===height){
       return true;
     }
@@ -159,7 +159,7 @@ function searchByHeight(people){
       return false;
     }
   })
-  return foundHeight
+  return foundPeople
 }
 
 
