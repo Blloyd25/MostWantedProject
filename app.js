@@ -1,5 +1,5 @@
 "use strict"
-
+let people = data;
 
 //Menu functions.
 //Used for the overall flow of the application.
@@ -13,14 +13,14 @@ function app(people){
   switch(searchType){
     case 'yes':
       searchResults = searchByName(people);
-      
+      break;
     case 'no':
-    let searchByTraits = promptFor("do you wish to search by traits? Enter 'yes' or 'No'" ,yesNo).toLowerCase
-    if (searchByTraits = 'no'){
+    // let searchByTraits = promptFor("do you wish to search by traits? Enter 'yes' or 'No'" ,yesNo).toLowerCase
+    // if (searchByTraits = 'no'){
       
     
-    }
-
+    // }
+      break;
 
     
     
@@ -87,24 +87,26 @@ function searchByName(people){
     }
   })
   // TODO: find the person single person object using the name they entered.
-  return foundPerson;
+  // alert(foundPerson);
+  return foundPerson[0]
 }
+
 
 //unfinished function to search through an array of people to find matching eye colors. Use searchByName as reference.
 function searchByEyeColor(people){
-  let eyeColor = promptFor("what is their eye color?", autoValid);
+  let chosenEyeColor = promptFor("what is their eye color?", autoValid);
 
-  let foundEyeColor = eyeColor.filter(function(potentialMatch){
-    if(potentialMatch.eyeColor === eyeColor){
+  let foundPeople = people.filter(function(potentialMatch){
+    if(potentialMatch.eyeColor === chosenEyeColor){
       return true;
     }
     else{
         return false;
     }
   })
-    return foundEyeColor
+    return foundPeople
 }
-console.log(foundEyeColor)
+
 
 function searchByOccupation(people){
   let occupation = promptFor("What is the occupation?", autoValid);
@@ -164,6 +166,18 @@ function searchByHeight(people){
 //TODO: add other trait filter functions here.
 
 
+let tempPeople = people // 100
+
+tempPeople = searchByEyeColor(tempPeople)
+tempPeople = searchByGender(tempPeople)
+
+if (tempPeople.length > 1) {
+  displayPeople(tempPeople)
+} else if (tempPeople.length === 1 ) {
+  displayPerson(tempPeople[0])
+} else { 
+  // nodata 
+}
 
 //#endregion
 
@@ -184,6 +198,11 @@ function displayPerson(person){
   // height, weight, age, name, occupation, eye color.
   let personInfo = "First Name: " + person.firstName + "\n";
   personInfo += "Last Name: " + person.lastName + "\n";
+  personInfo += "Gender" + person.gender + "\n";
+  personInfo += "Height" + person.height +"\n";
+  personInfo += "Weight" + person.weight + "\n";
+  personInfo += "Eyecolor" +person.eyeColor + "\n";
+  personInfo += "Occupation" + person.occupation + "\n";
   // TODO: finish getting the rest of the information to display.
   alert(personInfo);
 }
