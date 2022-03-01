@@ -57,7 +57,7 @@ function app(people){
     // TODO: get person's descendants
     break;
     case "restart":
-    app(people); // restart
+    app(person, people); // restart
     break;
     case "quit":
     return; // stop execution
