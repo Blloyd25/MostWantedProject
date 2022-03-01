@@ -13,21 +13,29 @@ function app(people){
   switch(searchType){
     case 'yes':
       searchResults = searchByName(people);
-      break;
+      
     case 'no':
-      // TODO: search by traits
-      break;
-      default:
+    let searchByTraits = promptFor("do you wish to search by traits? Enter 'yes' or 'No'" ,yesNo).toLowerCase
+    if (searchByTraits = 'no'){
+      
+    
+    }
+
+
+    
+    
+      
     app(people); // restart app
       break;
   }
   
   // Call the mainMenu function ONLY after you find the SINGLE person you are looking for
-  mainMenu(searchResults, people);
+    mainMenu(searchResults, people);
 }
 
 // Menu function to call once you find who you are looking for
-function mainMenu(person, people){
+    function mainMenu(person, people) {
+  
 
   /* Here we pass in the entire person object that we found in our search, as well as the entire original dataset of people. We need people in order to find descendants and other information that the user may want. */
 
@@ -37,11 +45,11 @@ function mainMenu(person, people){
   }
 
   let displayOption = promptFor("Found " + person.firstName + " " + person.lastName + " . Do you want to know their 'info', 'family', or 'descendants'? Type the option you want or 'restart' or 'quit'", autoValid);
-
+  
   switch(displayOption){
     case "info":
-    // TODO: get person's info
-    break;
+    displayPerson(person, people)
+    
     case "family":
     // TODO: get person's family
     break;
@@ -84,9 +92,19 @@ function searchByName(people){
 
 //unfinished function to search through an array of people to find matching eye colors. Use searchByName as reference.
 function searchByEyeColor(people){
+  let eyeColor = promptFor("what is their eye color?", autoValid);
 
+  let foundEyeColor = eyeColor.filter(function(potentialMatch){
+    if(potentialMatch.eyeColor === eyeColor){
+      return true;
+    }
+    else{
+        return false;
+    }
+  })
+    return foundEyeColor
 }
-
+console.log(people)
 //TODO: add other trait filter functions here.
 
 
