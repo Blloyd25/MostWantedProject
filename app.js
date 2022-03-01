@@ -104,7 +104,34 @@ function searchByEyeColor(people){
   })
     return foundEyeColor
 }
-console.log(people)
+console.log(foundEyeColor)
+
+function searchByOccupation(people){
+  let occupation = promptFor("What is the occupation?", autoValid);
+  let foundOccupation = occupation.filter(function(potentialMatch){
+    if(potentialMatch.occupation === occupation){
+      return true;
+    }
+    else{
+      return false;
+    }
+  })
+  return foundOccupation
+}
+
+function searchByGender(people){
+  let gender = promptFor("What is the gender?", autoValid);
+  let foundGender = gender.filter(function(potentialMatch){
+    if(potentialMatch.gender === gender){
+      return true;
+    }
+    else{
+    return false;
+    }
+  })
+  return foundGender
+}
+
 //TODO: add other trait filter functions here.
 
 
