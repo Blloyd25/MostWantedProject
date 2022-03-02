@@ -137,7 +137,7 @@ function searchByWeight(people){
   let weight = promptFor("what weight do you want to search for?",autoValid);
 
   let foundPeople = people.filter(function(potentialMatch){
-    if (potentialMatch.weight===weight){
+    if (potentialMatch.weight==weight){
       return true;
     }
     else{
@@ -152,7 +152,7 @@ function searchByHeight(people){
   let height = promptFor("what height are you looking for? in inches?", autoValid);
 
   let foundPeople = people.filter(function(potentialMatch){
-    if(potentialMatch.height===height){
+    if(potentialMatch.height==height){
       return true;
     }
     else{
@@ -221,14 +221,14 @@ function displayParent(person){
 function searchByTrait(people){
   let resultTrait = people;
   do{
-    let searchTrait = promptFor('What trait would you like to search?  \age\Gender\Height\Weight\Eyecolor\Occupation',autoValid).toLowerCase();
+    let searchTrait = promptFor('What trait would you like to search?  Gender,Height,Weight,Eyecolor,Occupation',autoValid).toLowerCase();
     switch(searchTrait){
       case 'gender':
         resultTrait = searchByGender(resultTrait)
         displayPeople(resultTrait);
           break;
         case 'weight':
-        resultTrait =   searchByWeight(resultTrait);
+        resultTrait = searchByWeight(resultTrait);
         displayPeople(resultTrait);
           break;
       case 'eyecolor':
