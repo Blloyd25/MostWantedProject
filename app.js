@@ -53,8 +53,10 @@ function app(people){
     // TODO: get person's family
     break;
     case "descendants":
+    displayDescendants(person, people);
+    displayPeople(descen)
+    mainMenu(person,people);
     
-    // TODO: get person's descendants
     break;
     case "restart":
     app(person, people); // restart
@@ -203,9 +205,11 @@ function displayPerson(person){
   personInfo += "Weight" + person.weight + "\n";
   personInfo += "Eyecolor" +person.eyeColor + "\n";
   personInfo += "Occupation" + person.occupation + "\n";
-  // TODO: finish getting the rest of the information to display.
   alert(personInfo); 
 }
+
+
+
 function displayParent(person){
   let foundPeople = people.filter(function(el){
     if(el.id=== person.parents [0] || el.id === person.parents[1]){
@@ -215,7 +219,9 @@ function displayParent(person){
       return false;
 
   }})
-  alert(foundPeople)
+  displayParent(foundPeople, "Parent")
+  return foundPeople
+  
 }
 
 function searchByTrait(people){
@@ -243,30 +249,37 @@ function searchByTrait(people){
         resultTrait = searchByOccupation(resultTrait);
         displayPeople(resultTrait);
           break;
-      case 'age':
-        resultTrait = searchByAge(resultTrait);
-        displayPeople=(resultTrait)
-      default:
+      // case 'age':
+      //   resultTrait = searchByAge(resultTrait);
+      //   displayPeople=(resultTrait)
+      // default:
     }
   }
   while(resultTrait.length > 1);
   return resultTrait
 }}
 
-// function displayParent(person, people){
-// let personID = person.id;
-// let perParent = [];
-// perParent = person.parents
-// let foundPerson = people.filter(function(el){
-//   let elParent = el.id
-//   if(el.currentSpouse === personID || el.parents.includes(personID)|| elParent === perParent[0]|| elParent === perParent[1] ){
-//     return true;
-//   }
-//   else{
-//     return false;
-//   }
-// })
-//   alert(foundPerson)}
+let descen = [] 
+function displayDescendants(person, people){
+  let personId = person.id;
+  let foundPerson = people.filter(function(person){
+  if(person.parents.includes(personId)){
+    if(person != descen){
+      descen.push(person);
+      return true;
+    }
+    else{
+      return true
+  }
+  }
+  else{
+    return false;
+  }
+  })
+    for(let i = foundPerson.length - 1; i >= 0; i--){
+      displayDescendants(foundPerson[i],people);}    
+}
+
 
 
 //#endregion
