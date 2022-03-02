@@ -15,23 +15,17 @@ function app(people){
       searchResults = searchByName(people);
       break;
     case 'no':
-    // let searchByTraits = promptFor("do you wish to search by traits? Enter 'yes' or 'No'" ,yesNo).toLowerCase
-    // if (searchByTraits = 'no'){
-      
-    
-    // }
-      
-
-  
-    
-      
+      searchResults = searchByTrait(people);
+      break;
+      default:
       app(people); // restart app
-        break;
+      break;
+        
   }
   
   // Call the mainMenu function ONLY after you find the SINGLE person you are looking for
     mainMenu(searchResults, people);
-}
+
 
 // Menu function to call once you find who you are looking for
     function mainMenu(person, people) {
@@ -49,12 +43,17 @@ function app(people){
   
   switch(displayOption){
     case "info":
-    displayPerson(person, people)
+    displayPerson(person, people);
+    mainMenu(person, people);
+    break;
     
     case "family":
+    displayParent(person,people);
+    mainMenu(person, people);
     // TODO: get person's family
     break;
     case "descendants":
+    
     // TODO: get person's descendants
     break;
     case "restart":
@@ -205,8 +204,70 @@ function displayPerson(person){
   personInfo += "Eyecolor" +person.eyeColor + "\n";
   personInfo += "Occupation" + person.occupation + "\n";
   // TODO: finish getting the rest of the information to display.
-  alert(personInfo);
+  alert(personInfo); 
 }
+function displayParent(person){
+  let foundPeople = people.filter(function(el){
+    if(el.id=== person.parents [0] || el.id === person.parents[1]){
+      return true;
+    }
+    else{
+      return false;
+
+  }})
+  alert(foundPeople)
+}
+
+function searchByTrait(people){
+  let resultTrait = people;
+  do{
+    let searchTrait = promptFor('What trait would you like to search?  \age\Gender\Height\Weight\Eyecolor\Occupation',autoValid).toLowerCase();
+    switch(searchTrait){
+      case 'gender':
+        resultTrait = searchByGender(resultTrait)
+        displayPeople(resultTrait);
+          break;
+        case 'weight':
+        resultTrait =   searchByWeight(resultTrait);
+        displayPeople(resultTrait);
+          break;
+      case 'eyecolor':
+        resultTrait = searchByEyeColor(resultTrait);
+        displayPeople(resultTrait);
+          break;
+      case "height":
+        resultTrait = searchByHeight(resultTrait);
+        displayPeople(resultTrait);
+          break;  
+      case "occupation":
+        resultTrait = searchByOccupation(resultTrait);
+        displayPeople(resultTrait);
+          break;
+      case 'age':
+        resultTrait = searchByAge(resultTrait);
+        displayPeople=(resultTrait)
+      default:
+    }
+  }
+  while(resultTrait.length > 1);
+  return resultTrait
+}}
+
+// function displayParent(person, people){
+// let personID = person.id;
+// let perParent = [];
+// perParent = person.parents
+// let foundPerson = people.filter(function(el){
+//   let elParent = el.id
+//   if(el.currentSpouse === personID || el.parents.includes(personID)|| elParent === perParent[0]|| elParent === perParent[1] ){
+//     return true;
+//   }
+//   else{
+//     return false;
+//   }
+// })
+//   alert(foundPerson)}
+
 
 //#endregion
 
