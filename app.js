@@ -49,6 +49,12 @@ function app(people){
     
     case "family":
     displayParent(person,people);
+    displaySiblings(person,people);
+    // displaySpouse(person,people);
+    displayPeople(parentsArray); 
+    displayPeople(siblingsArray);
+    // displayPeople(spouseArray);
+    // displayEntireFamily(alertMessage)  
     mainMenu(person, people);
     // TODO: get person's family
     break;
@@ -210,19 +216,7 @@ function displayPerson(person){
 
 
 
-function displayParent(person){
-  let foundPeople = people.filter(function(el){
-    if(el.id=== person.parents [0] || el.id === person.parents[1]){
-      return true;
-    }
-    else{
-      return false;
 
-  }})
-  displayParent(foundPeople, "Parent")
-  return foundPeople
-  
-}
 
 function searchByTrait(people){
   let resultTrait = people;
@@ -279,6 +273,80 @@ function displayDescendants(person, people){
     for(let i = foundPerson.length - 1; i >= 0; i--){
       displayDescendants(foundPerson[i],people);}    
 }
+
+let parentsArray = [] 
+function displayParent(person, people){
+  let parents = person.parents;
+ 
+    let foundPeople = people.filter(function(person){
+    if(person.id==parents[0] || person.id==parents[1]){
+    parentsArray.push(person)
+    return true;
+    }
+    else{
+      return false
+    }
+  })
+    
+  for(let i = foundPeople.length - 1; i >= 0; i--){
+    displayParent(foundPeople[i],people);}    
+  
+}
+
+let siblingsArray = [] 
+function displaySiblings(person, people){
+  let checkParents = person.parents;
+  console.log(checkParents[0])
+    let siblings = people.filter(function(person){
+      
+      if(person.parents[0]!=null){
+        console.log(person.parents[0])
+        console.log(person.parents[0]== checkParents[0])
+    if(person.parents[0]== checkParents[0]){
+      if (person != siblingsArray){
+    siblingsArray.push(person)
+    return true;
+    }}
+    else{
+      return false
+    }}
+      
+  })
+    
+    
+  
+}
+
+let spouseArray = [] 
+function displaySpouse(person, people){
+  let spouse = person.spouse;
+  
+    let foundPeople = people.filter(function(person){
+    if(person.id==spouse[0] || person.id==spouse[1]){person.currentSpouse
+    spouseArray.push(person)
+    return true;
+    }
+    else{
+      return false
+    }
+  })
+      
+  for(let i = foundPeople.length - 1; i >= 0; i--){
+    displaySpouse(foundPeople[i],people);}    
+ 
+}
+
+
+
+
+
+function displayEntireFamily( parentsArray, siblingsArray, spouseArray){
+  let alertMessage = "parents: " + parentsArray + "\n"
+  + "siblings: " + siblingsArray + "\n"
+  + "Spouse: " + spouseArray; 
+displayEntireFamily(alertMessage)
+}
+
 
 
 
